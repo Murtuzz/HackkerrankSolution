@@ -1,0 +1,31 @@
+/*
+Here you are rotation vector in just a single loop wid the help of new array as here we are taking space O(n) bt that will be ohk,
+as the question will be solved in O(n). let assume the value of k is 100000 so now if you directly rotate array than complexity will be
+O(100000*n) that will be much higher.so we can use little extra space.
+
+so here we use a little tricky logic to do so we will check k+i is greater than length than we set values is k+i-len that means it will 
+store values from beginning. 
+
+*/
+
+
+vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries) {
+    int arr[a.size()];
+    
+    int len = a.size();
+    k%=len;
+    
+    for(int i=0;i<len;i++){
+        if(k+i>len-1)
+            arr[(k+i)-(len)]=a[i];
+        else
+            arr[i+k]=a[i];       
+    }
+    
+    len=queries.size();
+    vector<int>b(len);
+    for(int i=0;i<len;i++)
+        b[i]=arr[queries[i]];
+        
+return b;
+}
